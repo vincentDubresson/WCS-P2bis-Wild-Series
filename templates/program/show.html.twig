@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+<h1>Page n° {{id}}</h1>
+<a href="/program/show/{{id + 1}}">Afficher la page {{ id + 1 }}</a>
+{% endblock %}
