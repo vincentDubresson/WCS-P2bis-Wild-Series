@@ -1,10 +1,14 @@
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
 
+@import url('https://fonts.googleapis.com/css2?family=Megrim&display=swap');
+
 $primary-color: #000000;
 $secondary-color: #00A3E0;
 $deco-color: #963A87;
 $font-color : #EDEDED;
+
+$primary-font : 'Megrim', cursive;
 
 body {
     background-image: url('../images/Background/bg_pc.jpg');
@@ -23,18 +27,27 @@ body {
 }
 
 .welcomeCard {
+    background-color: rgba(237, 237, 237, 0.15);
+    box-shadow: 8px 3px 10px rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin: auto;
+    border-radius: 10px;
+    padding: 5%;
     margin-top: 150px;
-    width: 60%;
+    width: 70%;
 }
 
 .welcomeTitle {
     text-align: center;
     color: $secondary-color;
+}
+
+.welcomeTitle h1 {
+    font-family: $primary-font;
+    font-weight: bold;
 }
 
 .welcomeTitle img {
@@ -44,4 +57,26 @@ body {
 .welcomeText {
     color: $font-color;
     text-align: justify;
+}
+
+@media screen and (min-width: 992px) {
+    .welcomeCard {
+        margin-top: 100px;
+        flex-direction: row;
+    }
+
+    .welcomeTitle h1 {
+        margin-bottom: 20px;
+    }
+
+    .welcomeText {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .welcomeCard {
+        max-width: 840px;
+        margin-top: 200px;
+    }
 }
