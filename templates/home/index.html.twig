@@ -3,5 +3,18 @@
 {% block title %}Wild Series{% endblock %}
 
 {% block body %}
-{% include '_navbar.html.twig' %}
+{% include '_home_navbar.html.twig' %}
+
+<main>
+    <div class="welcomeCard">
+        <div class="welcomeTitle">
+            <h1>Bienvenue !</h1>
+            <img src="{{ asset('build/images/Logo/wild_series_logo.png') }}">
+        </div>
+        <p class="welcomeText">
+            Tout droit sorti de l’imaginaire d’un Wilder, Wild Series sera à coups sûrs le meilleur allié de vos séries : Filtrez vos recherches par catégories, affichez la liste des acteurs, notez et commentez vos épisodes préférés, et découvrez des nouveautés… Le tout entouré de la plus grosse communauté francophone de films et séries.<br><br>
+            Cherchez, trouvez, savourez !
+        </p>
+    </div>
+</main>
 {% endblock %}

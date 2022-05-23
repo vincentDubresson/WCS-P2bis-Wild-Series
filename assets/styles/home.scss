@@ -9,3 +9,39 @@ $font-color : #EDEDED;
 body {
     background-image: url('../images/Background/bg_pc.jpg');
 }
+
+.navbar {
+    height: 120px;
+}
+
+.logo img {
+    width: 60px;
+}
+
+.nav-link {
+    color: $font-color;
+}
+
+.welcomeCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 150px;
+    width: 60%;
+}
+
+.welcomeTitle {
+    text-align: center;
+    color: $secondary-color;
+}
+
+.welcomeTitle img {
+    width: 50%;
+}
+
+.welcomeText {
+    color: $font-color;
+    text-align: justify;
+}
