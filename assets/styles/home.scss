@@ -14,16 +14,15 @@ body {
     background-image: url('../images/Background/bg_pc.jpg');
 }
 
-.navbar {
+/* HOME PAGE */
+
+.homeNavbar {
     height: 120px;
-}
-
-.logo img {
-    width: 60px;
-}
-
-.nav-link {
-    color: $font-color;
+    .logo {
+        img {
+            width: 60px;
+        }
+    }
 }
 
 .welcomeCard {
@@ -38,43 +37,59 @@ body {
     padding: 5%;
     margin-top: 150px;
     width: 70%;
+    .welcomeTitle {
+        text-align: center;
+        color: $secondary-color;
+        h1 {
+            font-family: $primary-font;
+            font-weight: bold;
+        }
+        img {
+            width: 50%;
+        }
+    }
+    .welcomeText {
+        color: $font-color;
+        text-align: justify;
+    }
 }
 
-.welcomeTitle {
-    text-align: center;
-    color: $secondary-color;
+/* PROGRAM PAGE */
+
+.progNavbar {
+    height: 120px;
+    .logo {
+        img {
+            width: 60px;
+        }
+    }
 }
 
-.welcomeTitle h1 {
-    font-family: $primary-font;
-    font-weight: bold;
-}
 
-.welcomeTitle img {
-    width: 50%;
-}
 
-.welcomeText {
-    color: $font-color;
-    text-align: justify;
-}
+
+
+
+
 
 @media screen and (min-width: 992px) {
+    /* HOME PAGE */
     .welcomeCard {
         margin-top: 100px;
         flex-direction: row;
-    }
-
-    .welcomeTitle h1 {
-        margin-bottom: 20px;
-    }
-
-    .welcomeText {
-        width: 70%;
-    }
+        .welcomeTitle {
+            h1 {
+                margin-bottom: 20px;
+            }
+        }
+        .welcomeText {
+            width: 70%;
+        }
+    }  
 }
 
 @media screen and (min-width: 1200px) {
+    /* HOME PAGE */
     .welcomeCard {
         max-width: 840px;
         margin-top: 200px;

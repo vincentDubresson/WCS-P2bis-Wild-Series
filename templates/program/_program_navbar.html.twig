@@ -1,0 +1,44 @@
+<header>
+
+    <nav class="progNavbar navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <div class="container-fluid">
+
+            <a class="logo navbar-brand d-flex flex-column align-items-center" href="#">
+              <img class="pt-lg-3" src="{{ asset('build/images/Logo/wild_series_logo.png') }}">
+              <p>Wild Series</p>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse bg-dark" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-center">
+                    <li class="nav-item dropdown ps-lg-3 pe-lg-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Catégories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {# Boucle Catégorie #}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ps-lg-3 pe-lg-5">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Acteurs
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {# Boucle Acteurs #}
+                        </ul>
+                    </li>
+                    <li class="nav-item ps-lg-5">
+                        <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Mes Favoris</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>

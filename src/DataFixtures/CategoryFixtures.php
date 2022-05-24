@@ -9,15 +9,8 @@ use Doctrine\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture
 {
     const CATEGORIES = [
-        'Action', 'Actualité', 'Animation', 'Anime',
-        'Arts martiaux', 'Aventure', 'Comédie', 'Comédie musicale',
-        'Crime', 'Cuisine', 'Documentaire', 'Drame',
-        'Enfant', 'Famille', 'Fantastique', 'Game show',
-        'Guerre', 'Histoire', 'Horreur', 'Indie',
-        'Intérêt particulier', 'Maison et jardinage', 'Mini-série',
-        'Mystère', 'Podcast', 'Romance', 'Science-fiction',
-        'Soap', 'Sport', 'Suspense', 'Talk-show', 'Thriller',
-        'Télé-réalité', 'Voyage', 'Western'
+        'Action', 'Crime', 'Fantastique', 
+        'Horreur', 'Romance', 'Science-fiction'
     ];
 
     public function load(ObjectManager $manager): void
