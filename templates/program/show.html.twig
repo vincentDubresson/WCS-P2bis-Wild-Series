@@ -3,6 +3,35 @@
 {% block title %}Wild Series{% endblock %}
 
 {% block body %}
-<h1>Page n° {{id}}</h1>
-<a href="/program/show/{{id + 1}}">Afficher la page {{ id + 1 }}</a>
+
+{% include 'program/_program_navbar.html.twig' %}
+
+    <main>
+        <div class="detailCard">
+            <div class="detailTitle">
+                <h3>{{ program.0.title }}</h3>
+                        <p>Catégorie : {{ program.0.category.name }}</p>
+                        <img src="{{ program.0.poster }}">
+            </div>
+            <p class="detailText">{{ program.0.synopsis }}</p>
+        </div>
+    </main>
+
+    {#
+    <main>
+
+        <section class="programList">
+            <div class="programCard">
+                <div class="programTitle">
+                    <h3>{{ program.0.title }}</h3>
+                    <p>Catégorie : {{ program.0.category.name }}</p>
+                    <img src="{{ program.0.poster }}">
+                </div>
+                <marquee direction="up" scrollamount="2" width="80%" height="150px" class="programText">{{ program.0.synopsis }}</marquee>
+                <button class="btn btn-dark"><a href="/program/show/{{ program.0.id }}">En savoir plus</a></button>
+            </div>
+        </section>
+
+    </main>
+    #}
 {% endblock %}

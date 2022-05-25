@@ -2,31 +2,55 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
+use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 #[Route('/program', name: 'program_')]
 class ProgramController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProgramRepository $programRepository, CategoryRepository $categoryRepository): Response
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['id'];
+        $programs = $programRepository->findAll();
+        $categories = $categoryRepository->findAll();
 
-            return $this->redirectToRoute('program_show', ['id' => $id]);
+        if (!$programs) {
+            throw $this->createNotFoundException(
+                'No programs found in program\'s table.'
+            );
+        }
+        if (!$categories) {
+            throw $this->createNotFoundException(
+                'No categories found in program\'s table.'
+            );
         }
 
-        return $this->render('program/index.html.twig', [
-            'website' => 'Wild Series',
-        ]);
+        return $this->render( 'program/index.html.twig',
+                array('programs' => $programs, 'categories' => $categories)
+        );
     }
 
     #[Route('/show/{id<\d+>}', methods: 'GET', name: 'show')]
-    public function show(int $id = 1): Response
-    {
-        return $this->render('program/show.html.twig', ['id' => $id]);
+    public function show(int $id, ProgramRepository $programRepository, CategoryRepository $categoryRepository): Response
+    {   
+        $program = $programRepository->findBy(['id' => $id]);
+        $categories = $categoryRepository->findAll();
+
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'No programs found in program\'s table.'
+            );
+        }
+        if (!$categories) {
+            throw $this->createNotFoundException(
+                'No categories found in program\'s table.'
+            );
+        }
+
+        return $this->render('program/show.html.twig',
+                array('program' => $program, 'categories' => $categories));
     }
 }
