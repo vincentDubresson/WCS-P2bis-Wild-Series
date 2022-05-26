@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Episode;
+use App\Entity\Program;
+use App\Entity\Season;
 use App\Repository\CategoryRepository;
-use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
-use App\Repository\SeasonRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -35,13 +37,10 @@ class ProgramController extends AbstractController
         );
     }
 
-    #[Route('/show/{id<\d+>}', methods: 'GET', name: 'show')]
-    public function show(int $id, ProgramRepository $programRepository, CategoryRepository $categoryRepository): Response
+    #[Route('/show/{id}', methods: 'GET', name: 'show')]
+    public function show(Program $program, CategoryRepository $categoryRepository): Response
     {   
-        $program = $programRepository->findBy(['id' => $id]);
         $categories = $categoryRepository->findAll();
-        //var_dump($program);
-        //die();
 
         if (!$program) {
             throw $this->createNotFoundException(
@@ -58,22 +57,20 @@ class ProgramController extends AbstractController
                 array('program' => $program, 'categories' => $categories));
     }
 
-    #[Route('/{programId<\d+>}/season/{seasonId<\d+>}', methods: 'GET', name: 'season_show')]
-    public function showSeason(int $seasonId, SeasonRepository $seasonRepository, CategoryRepository $categoryRepository)
+    #[Route('/{programId}/season/{seasonId}', methods: 'GET', name: 'season_show')]
+    #[Entity('season', options: ['id' => 'seasonId'])]
+    public function showSeason(Season $season, CategoryRepository $categoryRepository)
     {
-        $season = $seasonRepository->findOneBy(array('id' => $seasonId));
         $categories = $categoryRepository->findAll();
 
         return $this->render('program/season_show.html.twig', array('season' => $season, 'categories' => $categories));
     }
 
-    #[Route('/{programId<\d+>}/season/{seasonId<\d+>}/episode/{episodeId<\d+>}', methods: 'GET', name:'episode_show')]
-    public function showEpisode(int $episodeId, EpisodeRepository $episodeRepository, CategoryRepository $categoryRepository)
+    #[Route('/{programId}/season/{seasonId}/episode/{episodeId}', methods: 'GET', name:'episode_show')]
+    #[Entity('episode', options: ['id' => 'episodeId'])]
+    public function showEpisode(Episode $episode, CategoryRepository $categoryRepository)
     {
-        $episode = $episodeRepository->findOneBy(array('id' => $episodeId));
         $categories = $categoryRepository->findAll();
-        //var_dump($episode);
-        //die();
 
         return $this->render('program/episode_show.html.twig', array('episode' => $episode, 'categories' => $categories));
     }

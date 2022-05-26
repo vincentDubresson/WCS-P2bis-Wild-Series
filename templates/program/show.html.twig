@@ -10,18 +10,18 @@
 
         <div class="detailCard">
             <div class="detailTitle">
-                <h3>{{ program.0.title }}</h3>
-                <p>Catégorie : {{ program.0.category.name }}</p>
-                <img src="{{ program.0.poster }}">
+                <h3>{{ program.title }}</h3>
+                <p>Catégorie : {{ program.category.name }}</p>
+                <img src="{{ program.poster }}">
                 <select class="form-select text-light bg-dark w-75 m-auto mt-3"
                         onchange="location = this.value;">
                     <option selected>Sélectionner une saison</option>
-                {% for season in program.0.seasons %}
-                    <option value="/program/{{ program.0.id }}/season/{{ season.id }}">Saison {{ season.number }}</option>
+                {% for season in program.seasons %}
+                    <option value="/program/{{ program.id }}/season/{{ season.id }}">Saison {{ season.number }}</option>
                 {% endfor %}
                 </select>
             </div>
-            <p class="detailText">{{ program.0.synopsis }}</p>
+            <p class="detailText">{{ program.synopsis }}</p>
         </div>
 
     </main>
