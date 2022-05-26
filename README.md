@@ -20,8 +20,8 @@ This Repo is a step by step creation of a website using symfony 6.
 
 
  Link to Season DB page :
- https://ibb.co/R3z9N9Z
+ [https://ibb.co/R3z9N9Z]
 
  Link to Episode DB page :
- https://ibb.co/TWzzQ4K
+ [https://ibb.co/TWzzQ4K]
 ```
