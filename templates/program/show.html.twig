@@ -7,31 +7,23 @@
 {% include 'program/_program_navbar.html.twig' %}
 
     <main>
+
         <div class="detailCard">
             <div class="detailTitle">
                 <h3>{{ program.0.title }}</h3>
-                        <p>Catégorie : {{ program.0.category.name }}</p>
-                        <img src="{{ program.0.poster }}">
+                <p>Catégorie : {{ program.0.category.name }}</p>
+                <img src="{{ program.0.poster }}">
+                <select class="form-select text-light bg-dark w-75 m-auto mt-3"
+                        onchange="location = this.value;">
+                    <option selected>Sélectionner une saison</option>
+                {% for season in program.0.seasons %}
+                    <option value="/program/{{ program.0.id }}/season/{{ season.id }}">Saison {{ season.number }}</option>
+                {% endfor %}
+                </select>
             </div>
             <p class="detailText">{{ program.0.synopsis }}</p>
         </div>
-    </main>
-
-    {#
-    <main>
-
-        <section class="programList">
-            <div class="programCard">
-                <div class="programTitle">
-                    <h3>{{ program.0.title }}</h3>
-                    <p>Catégorie : {{ program.0.category.name }}</p>
-                    <img src="{{ program.0.poster }}">
-                </div>
-                <marquee direction="up" scrollamount="2" width="80%" height="150px" class="programText">{{ program.0.synopsis }}</marquee>
-                <button class="btn btn-dark"><a href="/program/show/{{ program.0.id }}">En savoir plus</a></button>
-            </div>
-        </section>
 
     </main>
-    #}
+
 {% endblock %}

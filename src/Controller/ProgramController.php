@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Repository\CategoryRepository;
+use App\Repository\EpisodeRepository;
 use App\Repository\ProgramRepository;
+use App\Repository\SeasonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -38,6 +40,8 @@ class ProgramController extends AbstractController
     {   
         $program = $programRepository->findBy(['id' => $id]);
         $categories = $categoryRepository->findAll();
+        //var_dump($program);
+        //die();
 
         if (!$program) {
             throw $this->createNotFoundException(
@@ -52,5 +56,25 @@ class ProgramController extends AbstractController
 
         return $this->render('program/show.html.twig',
                 array('program' => $program, 'categories' => $categories));
+    }
+
+    #[Route('/{programId<\d+>}/season/{seasonId<\d+>}', methods: 'GET', name: 'season_show')]
+    public function showSeason(int $seasonId, SeasonRepository $seasonRepository, CategoryRepository $categoryRepository)
+    {
+        $season = $seasonRepository->findOneBy(array('id' => $seasonId));
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('program/season_show.html.twig', array('season' => $season, 'categories' => $categories));
+    }
+
+    #[Route('/{programId<\d+>}/season/{seasonId<\d+>}/episode/{episodeId<\d+>}', methods: 'GET', name:'episode_show')]
+    public function showEpisode(int $episodeId, EpisodeRepository $episodeRepository, CategoryRepository $categoryRepository)
+    {
+        $episode = $episodeRepository->findOneBy(array('id' => $episodeId));
+        $categories = $categoryRepository->findAll();
+        //var_dump($episode);
+        //die();
+
+        return $this->render('program/episode_show.html.twig', array('episode' => $episode, 'categories' => $categories));
     }
 }

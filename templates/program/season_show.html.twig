@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+
+{% include 'program/_program_navbar.html.twig' %}
+
+ <main>
+
+    <div class="seasonCard w-75">
+        <h1 class="seasonTitle text-center mb-5">
+            Saison {{ season.number }} de {{ season.program.title }}
+        </h1>
+        <p class="seasonText w-75 m-auto">{{ season.description }}</p>
+        <select class="form-select text-light bg-dark w-50 m-auto mt-4"
+                onchange="location = this.value;">
+            <option selected>Sélectionner un épisode</option>
+                {% for episode in season.episodes %}
+                    <option value="/program/{{ season.program.id }}/season/{{ season.id }}/episode/{{ episode.id}}">S{{ episode.season.number }}-e{{ episode.number }} - "{{ episode.title }}</option>
+                {% endfor %}
+        </select>
+        <div class="button text-center mt-3">
+            <button class="btn btn-dark"><a href="/program/show/{{ season.program.id }}">Retour</button>
+        </div>
+
+    </main>
+
+{% endblock %}

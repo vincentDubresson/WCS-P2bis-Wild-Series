@@ -6,6 +6,7 @@
 $primary-color: #000000;
 $secondary-color: #00A3E0;
 $deco-color: #8d3dad;
+$cardBgColor: rgba(43, 43, 43, 0.712);
 $font-color : #EDEDED;
 
 $primary-font : 'Megrim', cursive;
@@ -26,7 +27,7 @@ body {
 }
 
 .welcomeCard {
-    background-color: rgba(56, 56, 56, 0.5);
+    background-color: $cardBgColor;
     box-shadow: 8px 3px 10px rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
@@ -89,7 +90,7 @@ body {
 }
 
 .programCard {
-    background-color: rgba(56, 56, 56, 0.5);
+    background-color: $cardBgColor;
     box-shadow: 8px 3px 10px rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
@@ -131,7 +132,7 @@ body {
 /* PROGRAM DETAILS PAGE */
 
 .detailCard {
-    background-color: rgba(237, 237, 237, 0.15);
+    background-color: $cardBgColor;
     box-shadow: 8px 3px 10px rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
@@ -159,6 +160,61 @@ body {
     }
 }
 
+/* SEASON PAGE */
+
+.seasonCard {
+    background-color: $cardBgColor;
+    box-shadow: 8px 3px 10px rgb(26, 26, 26);
+    border-radius: 10px;
+    padding: 5%;
+    margin: auto;
+    margin-top: 150px;
+    .seasonTitle {
+        color: $secondary-color;
+        font-family: $primary-font;
+        font-weight: bold;
+    }
+    .seasonText {
+        color: $font-color;
+        text-align: justify;
+    }
+    .button {
+        a {
+            color: $font-color;
+            text-decoration: none;
+        }
+    }
+}
+
+/* EPISODE PAGE */
+
+.episodeCard {
+    background-color: $cardBgColor;
+    box-shadow: 8px 3px 10px rgb(26, 26, 26);
+    border-radius: 10px;
+    padding: 5%;
+    margin: auto;
+    margin-top: 150px;
+    .episodeTitle {
+        color: $secondary-color;
+        font-family: $primary-font;
+        font-weight: bold;
+        span {
+            font-size: 0.6em;
+        }
+    }
+    .episodeText {
+        color: $font-color;
+        text-align: justify;
+    }
+    .button {
+        a {
+            color: $font-color;
+            text-decoration: none;
+        }
+    }
+}
+
 
 /* CATEGORY LIST PAGE */
 
@@ -175,7 +231,7 @@ body {
 }
 
 .categoryCard {
-    background-color: rgba(56, 56, 56, 0.5);
+    background-color: $cardBgColor;
     box-shadow: 8px 3px 10px rgb(26, 26, 26);
     display: flex;
     flex-direction: column;
