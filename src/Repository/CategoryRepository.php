@@ -21,6 +21,11 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
+    public function findAll(): array
+    {
+        return $this->findBy(array(), array('name' => 'ASC'));
+    }
+
     public function add(Category $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

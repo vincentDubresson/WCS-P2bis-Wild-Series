@@ -7,6 +7,7 @@ use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -45,11 +46,22 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/new', name: 'new')]
-    public function new(CategoryRepository $categoryRepository): Response
+    public function new(Request $request, CategoryRepository $categoryRepository): Response
     {
+        
         $category = new Category();
 
         $form = $this->createForm(CategoryType::class, $category);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()) {
+            
+            $categoryRepository->add($category, true);
+            $categories = $categoryRepository->findAll();
+
+            return $this->render('category/list.html.twig', ['categories' => $categories]);
+        }
 
         $categories = $categoryRepository->findAll();
 
