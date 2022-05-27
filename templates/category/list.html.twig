@@ -16,9 +16,10 @@
                     {% for category in categories %}
                         <li><a href="/category/show/{{category.name}}">{{ category.name }}</a></li>
                     {% else %}
-                        Aucune série trouvée.
+                        Aucune catégorie trouvée.
                     {% endfor %}
                     </ul>
+                    <button class="btn btn-dark mt-3"><a class="text-decoration-none text-light" href="/category/new">Ajouter une catégorie</a></button>
                 </div>
 
             </section>

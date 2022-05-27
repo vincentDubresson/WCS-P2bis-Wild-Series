@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+
+{% include 'program/_program_navbar.html.twig' %}
+
+    <main>
+    
+        <h1 class="categoryNewFormTitle">Ajouter une Catégorie</h1>
+
+        <section class="categoryNewForm">
+
+            <div>
+                {{ form_start(form) }}
+
+                {{ form_widget(form) }}
+                <button class="btn btn-dark" type="submit">Ajouter</button>
+
+                {{ form_end(form) }}
+            </div>
+
+        </section>
+
+    </main>
+        
+{% endblock %}
