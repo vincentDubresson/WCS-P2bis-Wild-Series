@@ -3,6 +3,9 @@
 {% block title %}Edit Category{% endblock %}
 
 {% block body %}
+
+    {% include '/admin/layouts/_admin_navbar.html.twig' %}
+
     <h1>Edit Category</h1>
 
     {{ include('/admin/category/_form.html.twig', {'button_label': 'Update'}) }}

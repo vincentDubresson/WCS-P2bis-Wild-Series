@@ -3,6 +3,9 @@
 {% block title %}New Episode{% endblock %}
 
 {% block body %}
+
+    {% include '/admin/layouts/_admin_navbar.html.twig' %}
+
     <h1>Create new Episode</h1>
 
     {{ include('/admin/episode/_form.html.twig') }}

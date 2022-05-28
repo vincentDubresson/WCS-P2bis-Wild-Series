@@ -3,6 +3,9 @@
 {% block title %}New Program{% endblock %}
 
 {% block body %}
+
+    {% include '/admin/layouts/_admin_navbar.html.twig' %}
+
     <h1>Create new Program</h1>
 
     {{ include('/admin/program/_form.html.twig') }}

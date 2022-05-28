@@ -3,6 +3,9 @@
 {% block title %}Edit Episode{% endblock %}
 
 {% block body %}
+
+    {% include '/admin/layouts/_admin_navbar.html.twig' %}
+
     <h1>Edit Episode</h1>
 
     {{ include('/admin/episode/_form.html.twig', {'button_label': 'Update'}) }}
