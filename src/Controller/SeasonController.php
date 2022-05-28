@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/season')]
+#[Route('admin/season')]
 class SeasonController extends AbstractController
 {
     #[Route('/', name: 'app_season_index', methods: ['GET'])]
     public function index(SeasonRepository $seasonRepository): Response
     {
-        return $this->render('season/index.html.twig', [
+        return $this->render('admin/season/index.html.twig', [
             'seasons' => $seasonRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class SeasonController extends AbstractController
             return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('season/new.html.twig', [
+        return $this->renderForm('admin/season/new.html.twig', [
             'season' => $season,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class SeasonController extends AbstractController
     #[Route('/{id}', name: 'app_season_show', methods: ['GET'])]
     public function show(Season $season): Response
     {
-        return $this->render('season/show.html.twig', [
+        return $this->render('admin/season/show.html.twig', [
             'season' => $season,
         ]);
     }
@@ -60,7 +60,7 @@ class SeasonController extends AbstractController
             return $this->redirectToRoute('app_season_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('season/edit.html.twig', [
+        return $this->renderForm('admin/season/edit.html.twig', [
             'season' => $season,
             'form' => $form,
         ]);

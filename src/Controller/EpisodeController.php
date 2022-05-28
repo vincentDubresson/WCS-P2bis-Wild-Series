@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/episode')]
+#[Route('admin/episode')]
 class EpisodeController extends AbstractController
 {
     #[Route('/', name: 'app_episode_index', methods: ['GET'])]
     public function index(EpisodeRepository $episodeRepository): Response
     {
-        return $this->render('episode/index.html.twig', [
+        return $this->render('admin/episode/index.html.twig', [
             'episodes' => $episodeRepository->findAll(),
         ]);
     }
@@ -34,7 +34,7 @@ class EpisodeController extends AbstractController
             return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('episode/new.html.twig', [
+        return $this->renderForm('admin/episode/new.html.twig', [
             'episode' => $episode,
             'form' => $form,
         ]);
@@ -43,7 +43,7 @@ class EpisodeController extends AbstractController
     #[Route('/{id}', name: 'app_episode_show', methods: ['GET'])]
     public function show(Episode $episode): Response
     {
-        return $this->render('episode/show.html.twig', [
+        return $this->render('admin/episode/show.html.twig', [
             'episode' => $episode,
         ]);
     }
@@ -60,7 +60,7 @@ class EpisodeController extends AbstractController
             return $this->redirectToRoute('app_episode_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('episode/edit.html.twig', [
+        return $this->renderForm('admin/episode/edit.html.twig', [
             'episode' => $episode,
             'form' => $form,
         ]);
