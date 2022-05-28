@@ -6,37 +6,45 @@
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Season index</h1>
+    <section class="adminList">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Number</th>
-                <th>Year</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for season in seasons %}
-            <tr>
-                <td>{{ season.id }}</td>
-                <td>{{ season.number }}</td>
-                <td>{{ season.year }}</td>
-                <td>{{ season.description }}</td>
-                <td>
-                    <a href="{{ path('app_season_show', {'id': season.id}) }}">show</a>
-                    <a href="{{ path('app_season_edit', {'id': season.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1>Season index</h1>
 
-    <a href="{{ path('app_season_new') }}">Create new</a>
+        <button class="btn btn-dark"><a href="{{ path('app_season_new') }}">Ajouter</a></button>
+
+            <div class="adminTable">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Série</th>
+                            <th>Saison</th>
+                            <th>Année</th>
+                            <th>Description</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for season in seasons %}
+                        <tr>
+                            <td>{{ season.program.title }}</td>
+                            <td>{{ season.number }}</td>
+                            <td>{{ season.year }}</td>
+                            <td>{{ season.description }}</td>
+                            <td>
+                                <button class="btn btn-dark"><a href="{{ path('app_season_show', {'id': season.id}) }}">Afficher</a></button>
+                                <button class="btn btn-dark"><a href="{{ path('app_season_edit', {'id': season.id}) }}">Éditer</a></button>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="5">Aucun résultat</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+        </div>
+
+    </section>
+    
 {% endblock %}

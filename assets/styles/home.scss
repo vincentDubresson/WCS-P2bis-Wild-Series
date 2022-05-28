@@ -13,6 +13,7 @@ $primary-font : 'Megrim', cursive;
 
 body {
     background-image: url('../images/Background/bg_pc.jpg');
+    background-attachment: fixed;
 }
 
 /* HOME PAGE */
@@ -207,12 +208,6 @@ body {
         color: $font-color;
         text-align: justify;
     }
-    .button {
-        a {
-            color: $font-color;
-            text-decoration: none;
-        }
-    }
 }
 
 
@@ -258,44 +253,44 @@ body {
     }
 }
 
+/* ADMIN INDEX */
 
-/* NEW FORM PAGE */
-
-.NewFormTitle {
-    text-align: center;
+.adminList {
     margin-top: 30px;
-    font-family: $primary-font;
-    color: $secondary-color;
-    font-weight: bolder;
-}
-
-.NewForm {
-    margin-top: 30px;
-    div {
-        background-color: $cardBgColor;
-        box-shadow: 8px 3px 10px rgb(26, 26, 26);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        padding: 10px;
+    h1 {
+        color: $secondary-color;
+        font-family: $primary-font;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    button {
+        display: block;
         margin: auto;
-        width: 70%;
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: auto;
-            label {
-                color: $font-color;
-                margin-bottom: 10px;
-            }
+        margin-bottom: 30px;
+        a {
+            text-decoration: none;
+            color: $font-color !important;
         }
     }
+    .adminTable {
+        background-color: $cardBgColor;
+        box-shadow: 8px 3px 10px rgb(26, 26, 26);
+        border-radius: 10px;
+        margin: 0 30px;
+        padding: 0 15px;
+    }   .table {
+            color: $font-color;
+            tr {
+                text-align: center;
+                td {
+                    button {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+    }
 }
-
-
 
 @media screen and (min-width: 992px) {
     /* HOME PAGE */

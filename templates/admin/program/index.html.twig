@@ -6,37 +6,44 @@
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Program index</h1>
+    <section class="adminList">
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Synopsis</th>
-                <th>Poster</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for program in programs %}
-            <tr>
-                <td>{{ program.id }}</td>
-                <td>{{ program.title }}</td>
-                <td>{{ program.synopsis }}</td>
-                <td>{{ program.poster }}</td>
-                <td>
-                    <a href="{{ path('app_program_show', {'id': program.id}) }}">show</a>
-                    <a href="{{ path('app_program_edit', {'id': program.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <h1>Index des Séries</h1>
 
-    <a href="{{ path('app_program_new') }}">Create new</a>
+        <button class="btn btn-dark"><a href="{{ path('app_program_new') }}">Ajouter</a></button>
+
+        <div class="adminTable">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Catégorie</th>
+                        <th>Synopsis</th>
+                        <th>URL Affiche</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for program in programs %}
+                    <tr>
+                        <td>{{ program.title }}</td>
+                        <td>{{ program.category.name }}</td>
+                        <td>{{ program.synopsis }}</td>
+                        <td>{{ program.poster }}</td>
+                        <td>
+                            <button class="btn btn-dark"><a href="{{ path('app_program_show', {'id': program.id}) }}">Afficher</a></button>
+                            <button class="btn btn-dark"><a href="{{ path('app_program_edit', {'id': program.id}) }}">Éditer</a></button
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">Aucun résultat</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
 {% endblock %}
