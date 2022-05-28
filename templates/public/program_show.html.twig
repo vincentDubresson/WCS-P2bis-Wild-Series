@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% include 'program/_program_navbar.html.twig' %}
+{% include 'public/layouts/_user_navbar.html.twig' %}
 
     <main>
 
@@ -23,6 +23,10 @@
             </div>
             <p class="detailText">{{ program.synopsis }}</p>
         </div>
+        <div class="button text-center mt-3">
+            <button class="btn btn-dark"><a class="text-light text-decoration-none"href="/program/">Retour</a></button>
+        </div>
+
 
     </main>
 

@@ -4,12 +4,11 @@
 
 {% block body %}
 
-{% include 'program/_program_navbar.html.twig' %}
+{% include 'public/layouts/_user_navbar.html.twig' %}
 
     <main>
 
-        <h1 class="programBigTitle">Toutes les séries</h1>
-        <button class="btn btn-dark"><a class="text-light text-decoration-none" href="/program/new">Ajouter une série</a></button>
+        <h1 class="programBigTitle mb-4">Toutes les séries</h1>
 
         <section class="programList">
             {% for program in programs %}

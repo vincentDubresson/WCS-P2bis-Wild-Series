@@ -259,9 +259,9 @@ body {
 }
 
 
-/* CATEGORY NEW FORM PAGE */@at-root
+/* NEW FORM PAGE */
 
-.categoryNewFormTitle {
+.NewFormTitle {
     text-align: center;
     margin-top: 30px;
     font-family: $primary-font;
@@ -269,7 +269,7 @@ body {
     font-weight: bolder;
 }
 
-.categoryNewForm {
+.NewForm {
     margin-top: 30px;
     div {
         background-color: $cardBgColor;

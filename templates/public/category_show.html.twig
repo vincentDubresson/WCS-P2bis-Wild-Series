@@ -4,11 +4,11 @@
 
 {% block body %}
 
-{% include 'program/_program_navbar.html.twig' %}
+{% include 'public/layouts/_user_navbar.html.twig' %}
 
     <main>
 
-        <h1 class="programBigTitle">Catégorie {{ category.name }}</h1>
+        <h1 class="programBigTitle">Catégorie : {{ category.name }}</h1>
 
         <section class="programList">
             {% for program in programs %}
