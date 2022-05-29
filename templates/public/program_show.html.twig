@@ -20,6 +20,12 @@
                     <option value="/program/{{ program.id }}/season/{{ season.id }}">Saison {{ season.number }}</option>
                 {% endfor %}
                 </select>
+                <p class="mt-3 text-light">Liste des acteurs</p>
+                    <ul class="list-unstyled">
+                    {% for actor in program.actors %}
+                        <li><a class="text-secondary text-decoration-none" href="/actor/show/{{actor.id}}">{{ actor.firstname ~ ' ' ~ actor.lastname }}</a></li>
+                    {% endfor %}
+                    </ul>
             </div>
             <p class="detailText">{{ program.synopsis }}</p>
         </div>

@@ -14,7 +14,7 @@
                 <div class="categoryCard">
                     <ul class="categoryList">
                     {% for actor in actors %}
-                        <li><a href="/category/show/{{category.name}}">{{ actor.firstname ~ ' ' ~ actor.lastname }}</a></li>
+                        <li><a href="/actor/show/{{actor.id}}">{{ actor.firstname ~ ' ' ~ actor.lastname }}</a></li>
                     {% else %}
                         Aucun acteur trouvé.
                     {% endfor %}

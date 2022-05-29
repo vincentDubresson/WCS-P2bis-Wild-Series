@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wild Series{% endblock %}
+
+{% block body %}
+
+{% include 'public/layouts/_user_navbar.html.twig' %}
+
+    <main>
+
+        <h1 class="programBigTitle">Acteur : {{ actor.firstname ~ ' ' ~ actor.lastname }}</h1>
+
+        <section class="programList">
+            {% for program in actor.program %}
+                <div class="programCard">
+                    <div class="programTitle">
+                        <h3>{{ program.title }}</h3>
+                        <p>Catégorie : {{ program.category.name }}</p>
+                        <img src="{{ program.poster }}">
+                    </div>
+                    <marquee direction="up" scrollamount="2" width="80%" height="150px" class="programText">{{ program.synopsis }}</marquee>
+                    <button class="btn btn-dark"><a href="/program/show/{{ program.id }}">En savoir plus</a></button>
+                </div>
+            {% else %}
+                Aucune série trouvée.
+            {% endfor %}
+        </section>
+
+    </main>
+    
+{% endblock %}
