@@ -292,6 +292,69 @@ body {
     }
 }
 
+
+/* ADMIN FORMS */
+
+.adminForm {
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    h1 {
+        color: $secondary-color;
+        font-family: $primary-font;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    div {
+        display: flex;
+        margin-bottom: 15px;
+        button {
+            margin: auto;
+        }
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        background-color: $cardBgColor;
+        box-shadow: 8px 3px 10px rgb(26, 26, 26);
+        border-radius: 10px;
+        margin: 0 30px;
+        padding: 0 15px;
+        width: 50%;
+        margin: auto;
+        form {
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            margin: auto;
+            div {
+                display: flex;
+                flex-direction: column;
+                div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    label {
+                        color: $font-color;
+                        margin-bottom: 5px;
+                    }
+                    input {
+                        text-align: center;
+                    }
+                }
+            }
+            button {
+                margin: auto;
+                width: 50%;
+                margin-top: 15px;
+            }
+        }
+    }
+}
+
+
 @media screen and (min-width: 992px) {
     /* HOME PAGE */
     .welcomeCard {

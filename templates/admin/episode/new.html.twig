@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Episode{% endblock %}
+{% block title %}Admin - Épisode{% endblock %}
 
 {% block body %}
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Create new Episode</h1>
+    <section class="adminForm">
 
-    {{ include('/admin/episode/_form.html.twig') }}
+        <h1>Nouvel Épisode</h1>
 
-    <a href="{{ path('app_episode_index') }}">back to list</a>
+        <div>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_episode_index') }}">Retour</a></button>
+        </div>
+
+        <div class="form">
+
+            {{ include('/admin/episode/_form.html.twig') }}
+
+        </div>
+
+    </section>
+
+
+
+
 {% endblock %}

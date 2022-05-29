@@ -1,16 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Category{% endblock %}
+{% block title %}Admin - Catégorie{% endblock %}
 
 {% block body %}
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Edit Category</h1>
+    <section class="adminForm">
 
-    {{ include('/admin/category/_form.html.twig', {'button_label': 'Update'}) }}
+        <h1>Modifier Catégorie</h1>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+        <div>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_category_index') }}">Retour</a></button>
+        </div>
+
+        <div class="form">
+
+            {{ include('/admin/category/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+        </div>
+
+    </section>
 
     {{ include('/admin/category/_delete_form.html.twig') }}
 {% endblock %}

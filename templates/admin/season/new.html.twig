@@ -1,18 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Season{% endblock %}
+{% block title %}Admin - Saison{% endblock %}
 
 {% block body %}
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-   <main>
-    
-        <h1 class="NewFormTitle">Ajouter une Saison</h1>
+    <section class="adminForm">
 
-        {{ include('/admin/season/_form.html.twig') }}
+        <h1>Nouvelle Saison</h1>
 
-        <a href="{{ path('app_season_index') }}">back to list</a>
+        <div>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_season_index') }}">Retour</a></button>
+        </div>
 
-    </main>
+        <div class="form">
+
+            {{ include('/admin/season/_form.html.twig') }}
+
+        </div>
+
+    </section>
+
+
+
+
 {% endblock %}

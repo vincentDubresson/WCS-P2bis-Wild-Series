@@ -16,14 +16,19 @@ class EpisodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title', TextType::class)
-            ->add('number', IntegerType::class)
+            ->add('title', TextType::class, [
+                'label' => 'Titre'
+            ])
+            ->add('number', IntegerType::class, [
+                'label' => 'Épisode n°'
+            ])
             ->add('synopsis', TextType::class)
             ->add('season', EntityType::class, [
                 'class' => Season::class,
                 'choice_label' => function (Season $season) {
                     return $season->getProgram()->getTitle() . ' - Saison ' . $season->getNumber();
-                }
+                },
+                'label' => 'Saison'
             ])
         ;
     }

@@ -1,14 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Program{% endblock %}
+{% block title %}Admin - Série{% endblock %}
 
 {% block body %}
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Create new Program</h1>
+    <section class="adminForm">
 
-    {{ include('/admin/program/_form.html.twig') }}
+        <h1>Nouvelle Série</h1>
 
-    <a href="{{ path('app_program_index') }}">back to list</a>
+        <div>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_program_index') }}">Retour</a></button>
+        </div>
+
+        <div class="form">
+
+            {{ include('/admin/program/_form.html.twig') }}
+
+        </div>
+
+    </section>
+
+
+
+
 {% endblock %}

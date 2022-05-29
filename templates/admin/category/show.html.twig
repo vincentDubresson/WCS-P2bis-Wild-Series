@@ -1,29 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Category{% endblock %}
+{% block title %}Admin - Catégorie{% endblock %}
 
 {% block body %}
 
     {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <h1>Category</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ category.name }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_category_index') }}">back to list</a>
+    <section class="adminList">
 
-    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a>
+
+        <h1>Catégorie</h1>
+
+        <div class="container d-inline">
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_category_index') }}">Retour</a></button>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_category_edit', {'id': category.id}) }}">Modifier</a></button>
+        </div>
+
+        <div class="adminTable">
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ category.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ category.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
 
     {{ include('/admin/category/_delete_form.html.twig') }}
 {% endblock %}
