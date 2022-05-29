@@ -3,32 +3,41 @@
 {% block title %}Actor{% endblock %}
 
 {% block body %}
-    <h1>Actor</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ actor.id }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ actor.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ actor.lastname }}</td>
-            </tr>
-            <tr>
-                <th>BirthDate</th>
-                <td>{{ actor.birthDate ? actor.birthDate|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {% include '/admin/layouts/_admin_navbar.html.twig' %}
 
-    <a href="{{ path('app_actor_index') }}">back to list</a>
+    
+        <section class="adminList">
 
-    <a href="{{ path('app_actor_edit', {'id': actor.id}) }}">edit</a>
+        <h1>Actor</h1>
 
-    {{ include('actor/_delete_form.html.twig') }}
+        <div class="container d-inline">
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_actor_index') }}">Retour</a></button>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_actor_edit', {'id': actor.id}) }}">Modifier</a></button>
+        </div>
+
+        <div class="adminTable">
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Id</th>
+                        <td>{{ actor.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Firstname</th>
+                        <td>{{ actor.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Lastname</th>
+                        <td>{{ actor.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>BirthDate</th>
+                        <td>{{ actor.birthDate ? actor.birthDate|date('Y-m-d') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+    {{ include('admin/actor/_delete_form.html.twig') }}
 {% endblock %}

@@ -24,9 +24,13 @@ class Actor
     #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
     private $lastname;
 
-    #[ORM\Column(type: 'date')]
+    #[ORM\Column(type: 'string')]
     #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
-    #[Assert\Date(message: 'Merci de respecter ce format : YYYY-MM-JJ')]
+    #[Assert\Regex(
+        pattern: '/[0-9]{4}/[0-9]{2}/[0-9]{2}/',
+        match: false,
+        message: 'On parle de vraies série ici !'
+    )]
     private $birthDate;
 
     #[ORM\ManyToMany(targetEntity: Program::class, inversedBy: 'actors')]
@@ -66,12 +70,12 @@ class Actor
         return $this;
     }
 
-    public function getBirthDate(): ?\DateTimeInterface
+    public function getBirthDate(): ?string
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(\DateTimeInterface $birthDate): self
+    public function setBirthDate(?string $birthDate): self
     {
         $this->birthDate = $birthDate;
 
