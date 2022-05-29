@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
+use App\Repository\ActorRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -120,5 +121,29 @@ class DefaultController extends AbstractController
 
         return $this->render('public/category_show.html.twig', 
                 array('programs' => $programs, 'categories' => $categories, 'category' => $categoryName));
+    }
+
+
+    /* ACTOR PAGES */
+    #[Route('/actor/', name: 'actor_list')]
+    public function actorList(ActorRepository $actorRepository, CategoryRepository $categoryRepository): Response
+    {
+        $actors = $actorRepository->findAll();
+        $categories = $categoryRepository->findAll();
+
+        if (!$actors) {
+            throw $this->createNotFoundException(
+                'No actors found in actor\'s table.'
+            );
+        }
+        if (!$categories) {
+            throw $this->createNotFoundException(
+                'No categories found.'
+            );
+        }
+
+        return $this->render( 'public/actor_list.html.twig',
+                array('actors' => $actors, 'categories' => $categories)
+        );
     }
 }

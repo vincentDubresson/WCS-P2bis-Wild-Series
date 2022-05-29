@@ -7,16 +7,16 @@
 
     <main>
 
-        <h1 class="categoryBigTitle">Liste de toutes les catégories</h1>
+        <h1 class="categoryBigTitle">Liste de tous les acteurs</h1>
 
             <section class="categoryList">
 
                 <div class="categoryCard">
                     <ul class="categoryList">
-                    {% for category in categories %}
-                        <li><a href="/category/show/{{category.name}}">{{ category.name }}</a></li>
+                    {% for actor in actors %}
+                        <li><a href="/category/show/{{category.name}}">{{ actor.firstname ~ ' ' ~ actor.lastname }}</a></li>
                     {% else %}
-                        Aucune catégorie trouvée.
+                        Aucun acteur trouvé.
                     {% endfor %}
                     </ul>
                 </div>
