@@ -93,6 +93,7 @@ class DefaultController extends AbstractController
     public function showEpisode(Episode $episode, ActorRepository $actorRepository,  CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findAll();
+        $actors = $actorRepository->findAll();
 
         return $this->render('public/episode_show.html.twig', array('actors' => $actors, 'episode' => $episode, 'categories' => $categories));
     }
