@@ -6,8 +6,12 @@ use App\Repository\ProgramRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity('title', message: 'Ce titre existe déjà.')]
 class Program
 {
     #[ORM\Id]
@@ -15,13 +19,29 @@ class Program
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Merci de ne pas dépasser 255 caractères.'
+    )]
     private $title;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
+    #[Assert\Regex(
+        pattern: '/\s*[pP]lus\s*belle\s*la\s*vie/',
+        match: false,
+        message: 'On parle de vraies série ici !'
+    )]
     private $synopsis;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Merci de ne pas dépasser 255 caractères.'
+    )]
+    #[Assert\Url(message: 'Merci de rentrer une URL valide.')]
     private $poster;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'programs')]

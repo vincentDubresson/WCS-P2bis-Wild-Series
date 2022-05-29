@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\EpisodeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: EpisodeRepository::class)]
 class Episode
@@ -14,9 +16,18 @@ class Episode
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Merci de ne pas dépasser 255 caractères.'
+    )]
     private $title;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
+    #[Assert\Type(
+        type: 'integer',
+        message: 'Merci de rentrer un chiffre ou un nombre'
+    )]
     private $number;
 
     #[ORM\Column(type: 'text', nullable: true)]

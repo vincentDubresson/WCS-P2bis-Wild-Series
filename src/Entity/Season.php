@@ -6,6 +6,8 @@ use App\Repository\SeasonRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 #[ORM\Entity(repositoryClass: SeasonRepository::class)]
 class Season
@@ -16,9 +18,19 @@ class Season
     private $id;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
+    #[Assert\Type(
+        type: 'integer',
+        message: 'Merci de rentrer un chiffre ou un nombre.'
+    )]
     private $number;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
+    #[Assert\Type(
+        type: 'integer',
+        message: 'Merci de rentrer une année à 4 chiffres.'
+    )]
     private $year;
 
     #[ORM\Column(type: 'text', nullable: true)]

@@ -340,6 +340,12 @@ body {
                         color: $font-color;
                         margin-bottom: 5px;
                     }
+                    ul {
+                        list-style: none;
+                        li {
+                            color: yellow;
+                        }
+                    }
                     input {
                         text-align: center;
                     }
