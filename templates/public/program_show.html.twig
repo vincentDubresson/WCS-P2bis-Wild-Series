@@ -17,7 +17,7 @@
                         onchange="location = this.value;">
                     <option selected>Sélectionner une saison</option>
                 {% for season in program.seasons %}
-                    <option value="/program/{{ program.id }}/season/{{ season.id }}">Saison {{ season.number }}</option>
+                    <option value="/program/{{ program.slug }}/season/{{ season.id }}">Saison {{ season.number }}</option>
                 {% endfor %}
                 </select>
                 <p class="mt-3 text-light">Liste des acteurs</p>

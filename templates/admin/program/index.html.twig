@@ -31,8 +31,8 @@
                         <td>{{ program.synopsis }}</td>
                         <td>{{ program.poster }}</td>
                         <td>
-                            <button class="btn btn-dark"><a href="{{ path('app_program_show', {'id': program.id}) }}">Afficher</a></button>
-                            <button class="btn btn-dark"><a href="{{ path('app_program_edit', {'id': program.id}) }}">Éditer</a></button
+                            <button class="btn btn-dark"><a href="{{ path('app_program_show', {'programSlug': program.slug}) }}">Afficher</a></button>
+                            <button class="btn btn-dark"><a href="{{ path('app_program_edit', {'programSlug': program.slug}) }}">Éditer</a></button
                         </td>
                     </tr>
                 {% else %}

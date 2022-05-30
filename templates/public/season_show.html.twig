@@ -17,7 +17,7 @@
                 onchange="location = this.value;">
             <option selected>Sélectionner un épisode</option>
                 {% for episode in season.episodes %}
-                    <option value="/program/{{ season.program.id }}/season/{{ season.id }}/episode/{{ episode.id}}">S{{ episode.season.number }}-e{{ episode.number }} - "{{ episode.title }}</option>
+                    <option value="/program/{{ season.program.slug }}/season/{{ season.id }}/episode/{{ episode.id}}">S{{ episode.season.number }}-e{{ episode.number }} - "{{ episode.title }}</option>
                 {% endfor %}
         </select>
         <div class="button text-center mt-3">

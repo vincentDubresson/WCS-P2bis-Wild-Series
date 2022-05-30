@@ -13,7 +13,7 @@
 
         <div class="container d-inline">
             <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_program_index') }}">Retour</a></button>
-            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_program_edit', {'id': program.id}) }}">Modifier</a></button>
+            <button class="btn btn-dark"><a class="text-light text-decoration-none" href="{{ path('app_program_edit', {'programSlug': program.slug}) }}">Modifier</a></button>
         </div>
 
         <div class="adminTable">

@@ -19,7 +19,7 @@
                         <img src="{{ program.poster }}">
                     </div>
                     <marquee direction="up" scrollamount="2" width="80%" height="150px" class="programText">{{ program.synopsis }}</marquee>
-                    <button class="btn btn-dark"><a href="/program/show/{{ program.id }}">En savoir plus</a></button>
+                    <button class="btn btn-dark"><a href="/program/show/{{ program.slug }}">En savoir plus</a></button>
                 </div>
             {% else %}
                 Aucune série trouvée.

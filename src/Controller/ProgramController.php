@@ -6,6 +6,7 @@ use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
 use App\Service\Slugify;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,7 +45,8 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_program_show', methods: ['GET'])]
+    #[Route('/{programSlug}', name: 'app_program_show', methods: ['GET'])]
+    #[ParamConverter('program', options: ['mapping' => ['programSlug' => 'slug']])]
     public function show(Program $program): Response
     {
         return $this->render('admin/program/show.html.twig', [
@@ -52,7 +54,8 @@ class ProgramController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_program_edit', methods: ['GET', 'POST'])]
+    #[Route('/{programSlug}/edit', name: 'app_program_edit', methods: ['GET', 'POST'])]
+    #[ParamConverter('program', options: ['mapping' => ['programSlug' => 'slug']])]
     public function edit(Slugify $slugify, Request $request, Program $program, ProgramRepository $programRepository): Response
     {
         $form = $this->createForm(ProgramType::class, $program);

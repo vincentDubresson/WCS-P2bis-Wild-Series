@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
@@ -9,6 +10,7 @@ use App\Repository\ActorRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProgramRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +55,8 @@ class DefaultController extends AbstractController
         );
     }
 
-    #[Route('/program/show/{id}', methods: 'GET', name: 'program_show')]
+    #[Route('/program/show/{programSlug}', methods: 'GET', name: 'program_show')]
+    #[ParamConverter('program', options: ['mapping' => ['programSlug' => 'slug']])]
     public function show(Program $program, ActorRepository $actorRepository, CategoryRepository $categoryRepository): Response
     {   
         $categories = $categoryRepository->findAll();
@@ -77,8 +80,9 @@ class DefaultController extends AbstractController
                 array('actors' => $actors, 'program' => $program, 'categories' => $categories));
     }
 
-    #[Route('/program/{programId}/season/{seasonId}', methods: 'GET', name: 'season_show')]
+    #[Route('/program/{programSlug}/season/{seasonId}', methods: 'GET', name: 'season_show')]
     #[Entity('season', options: ['id' => 'seasonId'])]
+    #[ParamConverter('program', options: ['mapping' => ['programSlug' => 'slug']])]
     public function showSeason(Season $season, ActorRepository $actorRepository, CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findAll();
@@ -88,8 +92,9 @@ class DefaultController extends AbstractController
         return $this->render('public/season_show.html.twig', array('actors' => $actors, 'season' => $season, 'categories' => $categories));
     }
 
-    #[Route('/program/{programId}/season/{seasonId}/episode/{episodeId}', methods: 'GET', name:'episode_show')]
+    #[Route('/program/{programSlug}/season/{seasonId}/episode/{episodeId}', methods: 'GET', name:'episode_show')]
     #[Entity('episode', options: ['id' => 'episodeId'])]
+    #[ParamConverter('program', options:['mapping' => ['programSlug' => 'slug']])]
     public function showEpisode(Episode $episode, ActorRepository $actorRepository,  CategoryRepository $categoryRepository)
     {
         $categories = $categoryRepository->findAll();
@@ -111,7 +116,7 @@ class DefaultController extends AbstractController
         return $this->render('public/category_list.html.twig', array('actors' => $actors, 'categories' => $categories));
     }
 
-    #[Route('/category/show/{category}', methods: 'GET', name: 'show')]
+    #[Route('/category/show/{category}', methods: 'GET', name: 'category_show')]
     public function listByCategory(string $category, ActorRepository $actorRepository,  ProgramRepository $programRepository, CategoryRepository $categoryRepository): Response
     {   
         $categoryName = $categoryRepository->findOneBy(['name' => $category]);
@@ -160,7 +165,7 @@ class DefaultController extends AbstractController
         );
     }
 
-    #[Route('/actor/show/{id}', methods: 'GET', name: 'show')]
+    #[Route('/actor/show/{id}', methods: 'GET', name: 'actor_show')]
     public function listByActor(int $id, ActorRepository $actorRepository, CategoryRepository $categoryRepository): Response
     {   
         $actor = $actorRepository->findOneBy(['id' => $id]);
