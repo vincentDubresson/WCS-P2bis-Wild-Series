@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,13 +23,15 @@ class ActorController extends AbstractController
     }
 
     #[Route('/new', name: 'app_actor_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ActorRepository $actorRepository): Response
+    public function new(Slugify $slugify, Request $request, ActorRepository $actorRepository): Response
     {
         $actor = new Actor();
         $form = $this->createForm(ActorType::class, $actor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($actor->getFirstname() . ' ' . $actor->getLastname());
+            $actor->setSlug($slug);
             $actorRepository->add($actor, true);
 
             return $this->redirectToRoute('app_actor_index', [], Response::HTTP_SEE_OTHER);
@@ -49,12 +52,14 @@ class ActorController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_actor_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Actor $actor, ActorRepository $actorRepository): Response
+    public function edit(Slugify $slugify, Request $request, Actor $actor, ActorRepository $actorRepository): Response
     {
         $form = $this->createForm(ActorType::class, $actor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($actor->getFirstname() . ' ' . $actor->getLastname());
+            $actor->setSlug($slug);
             $actorRepository->add($actor, true);
 
             return $this->redirectToRoute('app_actor_index', [], Response::HTTP_SEE_OTHER);

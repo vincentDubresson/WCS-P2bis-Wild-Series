@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Actor;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -10,6 +11,11 @@ use Faker\Factory;
 
 class ActorFixtures extends Fixture implements DependentFixtureInterface
 {
+    public function __construct(Slugify $slugify)
+    {
+        $this->slugify = $slugify;
+    }
+
     public function load(ObjectManager $manager): void
     {
         $actorNumber = 1;
@@ -17,8 +23,12 @@ class ActorFixtures extends Fixture implements DependentFixtureInterface
         for ($i = 1; $i <= 8; $i++) {
             for ($j = 1; $j <= 3; $j++) {
                 $actor = new Actor();
-                $actor->setFirstname($faker->firstName());
-                $actor->setLastname($faker->lastName());
+                $actorFirstName = $faker->firstname();
+                $actorLastName = $faker->lastname();
+                $actorFullName = $actorFirstName . ' ' . $actorLastName;
+                $actor->setFirstname($actorFirstName);
+                $actor->setLastname($actorLastName);
+                $actor->setSlug($this->slugify->generate($actorFullName));
                 $actor->setBirthDate($faker->date());
                 $actor->addProgram($this->getReference('program_' . $i));
                 $secondProgram = $i + 1;

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Program;
 use App\Form\ProgramType;
 use App\Repository\ProgramRepository;
+use App\Service\Slugify;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/program')]
 class ProgramController extends AbstractController
 {
+
     #[Route('/', name: 'app_program_index', methods: ['GET'])]
     public function index(ProgramRepository $programRepository): Response
     {
@@ -22,13 +24,15 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/new', name: 'app_program_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProgramRepository $programRepository): Response
+    public function new(Slugify $slugify, Request $request, ProgramRepository $programRepository): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $programRepository->add($program, true);
 
             return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
@@ -49,12 +53,14 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_program_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Program $program, ProgramRepository $programRepository): Response
+    public function edit(Slugify $slugify, Request $request, Program $program, ProgramRepository $programRepository): Response
     {
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $programRepository->add($program, true);
 
             return $this->redirectToRoute('app_program_index', [], Response::HTTP_SEE_OTHER);
