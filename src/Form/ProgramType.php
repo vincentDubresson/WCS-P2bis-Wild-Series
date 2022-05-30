@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Actor;
 use App\Entity\Category;
 use App\Entity\Program;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,6 +27,16 @@ class ProgramType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
+            ])
+            ->add('actors', EntityType::class, [
+                'class' => Actor::class,
+                'choice_label' => function(Actor $actor) {
+                    return $actor->getFirstname() . ' ' . $actor->getLastname();
+                },
+                'label' => 'Acteurs',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
             ])
         ;
     }

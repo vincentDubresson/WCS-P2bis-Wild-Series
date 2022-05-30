@@ -27,9 +27,8 @@ class Actor
     #[ORM\Column(type: 'string')]
     #[Assert\NotBlank(message: 'Ce champ est obligatoire.')]
     #[Assert\Regex(
-        pattern: '/[0-9]{4}/[0-9]{2}/[0-9]{2}/',
-        match: false,
-        message: 'On parle de vraies série ici !'
+        pattern: '/[0-9]{4}-[0-9]{2}-[0-9]{2}/',
+        message: 'Respecter le format : YYYY-MM-DD'
     )]
     private $birthDate;
 
